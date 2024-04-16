@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import models
 from database import engine
-from routers import auth, users
+from routers.Member_management import auth, users
 
 models.Base.metadata.create_all(bind=engine)
 
