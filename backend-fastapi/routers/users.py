@@ -1,6 +1,6 @@
 from fastapi import Depends, HTTPException, Path, APIRouter 
 from database import SessionLocal
-from models import Todos, Users
+from models import Users
 from typing import Annotated
 from sqlalchemy.orm import Session
 from starlette import status
@@ -13,7 +13,6 @@ router = APIRouter(
     tags=['user']
 )
 
-
 def get_db():
     db = SessionLocal() 
     try : 
@@ -22,20 +21,24 @@ def get_db():
         db.close()
 
 db_dependency = Annotated[Session, Depends(get_db)]
+#.auth.py에서 가져온 get_current_user 함수 사용
 user_dependency = Annotated[dict, Depends(get_current_user)]
 bcrypt_context = CryptContext(schemes = ['bcrypt'], deprecated = 'auto')
 
+#pydantic BaseModel
 class UserVerification(BaseModel):
     password : str
     new_password : str = Field(min_length=6)
 
 
+#유저 정보 가져오기 엔드포인트
 @router.get('/', status_code=status.HTTP_200_OK)
 async def get_user(user : user_dependency, db : db_dependency):
     if user is None:
         raise HTTPException(status_code=401, detail='Authentication Failed')
     return db.query(Users).filter(Users.id == user.get('id')).first()
 
+#비밀번호 변경 엔드포인트
 @router.put('/password', status_code=status.HTTP_204_NO_CONTENT)
 async def change_password(user : user_dependency, db : db_dependency, user_verification : UserVerification):
     if user is None:
