@@ -16,8 +16,8 @@ def lambda_handler(event, context):
         query_param = event.get('queryStringParameters', {})['theme']
         response = dynamodb.scan(
             TableName = 'capstone-test',
-            FilterExpression = 'contains(detected_pose, :pose)',
-            ExpressionAttributeValues = {':pose' : {'S' : query_param}},
+            FilterExpression = 'contains(detected_theme, :theme)',
+            ExpressionAttributeValues = {':theme' : {'S' : query_param}},
             ProjectionExpression = 'originalS3'
             )
             
