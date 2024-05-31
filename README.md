@@ -20,6 +20,7 @@
 
 ## 👨‍💻 전체 프로젝트 아키텍처
 <img width="1565" alt="image" src="https://github.com/choismne/2024_Capstone/assets/97864850/3cdda1e9-7fe3-4fb9-95d5-361310e49bdc">
+
 **본 리포지토리에서는 백엔드 파트 코드만 포함하고 있습니다. (녹색 점선 안쪽 부분)** 
 
 
