@@ -19,7 +19,7 @@
 - AWS(EC2, RDS, API Gateway, Lambda, DynamoDB), boto3, PyMySQL
 
 ## 전체 프로젝트 아키텍처
-** 본 리포지토리에서는 백엔드 파트 코드만 포함하고 있습니다. 
+**본 리포지토리에서는 백엔드 파트 코드만 포함하고 있습니다.** 
 
 <img width="1320" alt="스크린샷 2024-05-30 오후 2 11 35" src="https://github.com/choismne/2024_Capstone/assets/97864850/898c113f-319e-4428-94bf-d5ed276f6d5a">
 
