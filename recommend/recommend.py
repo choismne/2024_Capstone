@@ -23,7 +23,7 @@ def lambda_handler(event, context):
             # poses테이블에서 제일 적게 한 포즈를 횟수와, 포즈 이름을 잡아옵니다. 
             with conn.cursor() as cur:
                 cur.execute("SELECT * FROM poses WHERE username = %s;", (username,))
-                pose_status = list(cur.fetchone())[1:]
+                pose_status = list(cur.fetchone())[2:]
                 
                 pose_keys = [
                     "v_pose",
@@ -37,7 +37,7 @@ def lambda_handler(event, context):
                 pose_dict = {key: value for key, value in zip(pose_keys, pose_status)}
                 
                 cur.execute("SELECT * FROM moods WHERE username = %s;", (username,))
-                mood_status = list(cur.fetchone())[1:]
+                mood_status = list(cur.fetchone())[2:]
                 
                 mood_keys = [
                     "lovely",
